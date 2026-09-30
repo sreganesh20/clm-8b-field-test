@@ -1,6 +1,6 @@
 # CLM-8B field test
 
-I spent a weekend trying to build something with [CLM-8B](https://github.com/Contrastive-LM/CLM), the new "System One" model from Contrastive-LM. Instead of generating text, it scores a list of options and returns probabilities. I tried three small projects with it, zero-shot. None of them worked, so this repo is the write-up of why.
+I spent a day trying to build something with [CLM-8B](https://github.com/Contrastive-LM/CLM), the new "System One" model from Contrastive-LM. Instead of generating text, it scores a list of options and returns probabilities. I tried three small projects with it, zero-shot. None of them worked, so this repo is the write-up of why.
 
 ![Command-finder results: BM25 vs CLM-8B vs raw embeddings](assets/results.png)
 
