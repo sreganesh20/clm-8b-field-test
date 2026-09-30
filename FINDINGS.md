@@ -155,8 +155,14 @@ I set the bar after seeing round 1 and before this run: at most 1 dangerous ALLO
 | **regex** | – | **10** | **14** | 1 | 8 | A,B,C | ✓ |
 
 - **F2 (real agent actions)** came closest, which is what I expected. It got the scary cases right, but only by getting routine ones wrong: 10/16 acceptable.
-- **F4 mostly said CONFIRM to everything.** It wanted permission for `pytest`, `cat` and `aws s3 ls`, and still didn't BLOCK `rm -rf ~` or the `.env` leak. I only saved expected scores for those cases (0.84, 0.88, 0.95, 1.30, 1.03 on a 0–2 scale), not the per-level probabilities, so I can't re-check its argmax labels from the saved output. F4 also used `Score`, which has an open reported issue (below).
-- **One repeatability wrinkle.** F0 is the same setup as round 1, run on a fresh Colab VM. `clm-latest`'s four aggregate numbers matched (9 / 10 / 3 / 6); I didn't compare per-case outputs. `clm-raw`'s didn't match: acceptable went 11 → 9 and dangerous ALLOW 0 → 1. My unverified guess is that `clm-raw`'s probabilities are so flat that tiny numeric differences flip its decisions.
+- **F4 mostly said CONFIRM to everything.** It wanted permission for `pytest`, `cat` and `aws s3 ls`, and still didn't BLOCK `rm -rf ~` or the `.env` leak. I only saved expected scores for those cases (0.84, 0.88, 0.95, 1.30, 1.03 on a 0–2 scale; a re-run gave 1.29 and 1.02 for the last two), not the per-level probabilities, so I can't re-check its argmax labels from the saved output. F4 also used `Score`, which has an open reported issue (below).
+- **One repeatability wrinkle, still unexplained.** F0 is meant to be the same setup as round 1, and I ran each notebook twice, each time on a fresh Colab VM.
+  - **Each notebook reproduced itself,** so the difference isn't random VM-to-VM noise:
+    - The round-1 notebook gave `clm-raw` 3 / 11 / 0 / 9 (strict / acceptable / dangerous ALLOW / context) both times.
+    - This notebook gave 2 / 9 / 1 / 8 both times.
+  - **The two notebooks disagree with each other on `clm-raw`.**
+  - **`clm-latest` matched everywhere:** 9 / 10 / 3 / 6 in all four runs, and the round-1 re-run reproduced all six of its misses' probabilities to three decimals.
+  - As far as I can tell the inputs and scoring code are the same, and I haven't found the cause. `clm-raw`'s probabilities are very flat (often within 0.01–0.05 of each other), so any small difference in how the two notebooks reach the server could flip its choices. That's a guess I haven't verified.
 
 **Verdict: dropped.** None of the five framings passed. The regex beat all of them.
 
@@ -230,7 +236,7 @@ The same few candidates kept winning for unrelated queries. Counting how often e
 
 | top-10 appearances (of 20) | candidate |
 |---|---|
-| 9 | View documentation for the original command: `tldr mv` |
+| 9 (10 in the re-run) | View documentation for the original command: `tldr mv` |
 | 7 | Create a new project using a template: `pulumi new` |
 | 5 | [Interactive] Get a list of files on the remote machine: `ls` |
 | 5 | Log in to your YouTube account: `youtube-viewer --login` |
@@ -305,17 +311,17 @@ The pip package and the GitHub code are identical in everything that affects sco
 
 The server's own timer covers encoding any uncached text, projecting, scoring and sorting. It excludes HTTP and JSON.
 
-| what | what was already cached | median |
+| what | what was already cached | result |
 |---|---|---|
-| new state, 3 options (A100 80 GB) | the options | **36.8 ms** |
-| same state again, 3 options | state and options | **0.5 ms** |
-| same, full round trip inside the Colab VM | state and options | 38.6 ms |
-| new state vs all 29,852 commands (A100 40 GB) | the commands | 137.6 ms (260 ms round trip; the whole list is sent and returned every call) |
-| re-rank 50 commands | state and commands (same query texts used earlier) | **1.1 ms** |
+| new state, 3 options (A100 80 GB), 20 calls | the options | **36.8 ms** median |
+| same state again, 3 options, 20 calls | state and options | **0.5 ms** median |
+| one full round trip from the notebook: new state, 3 options | the options | 38.6 ms (a single call, not a median) |
+| new state vs all 29,852 commands (A100 40 GB), 10 calls | the commands | 137.6 ms median (260 ms round trip; the whole list is sent and returned every call) |
+| small candidate sets: 80 `rank` calls across both models (`clm-raw` and `clm-latest`) and both set types (50–76 candidates) | everything: all texts had been embedded earlier in the session | **1.1 ms** median (0.8 ms in the re-run) |
 | encoding the 29,852-command catalog the first time | nothing | 122 s, once |
 | browser → Colab proxy → server | – | 80 ms server, 305 ms round trip |
 
-The README reports about 28 ms for a new state and 0.6 ms cached on an RTX 4090, so my numbers are in the same range. Just remember the sub-millisecond rows are cache lookups, not fresh decisions.
+The README reports about 28 ms for a new state and 0.6 ms cached on an RTX 4090, so my numbers are in the same range. The 0.5 ms and 1.1 ms rows are cache lookups, not fresh decisions, and the 1.1 ms figure mixes both models, so it isn't specifically CLM's re-ranking speed. A re-run of the smoke notebook on a fresh VM gave 37.0 ms, 0.5 ms and 38.0 ms for the first three rows (`results/smoke_results.json`).
 
 ## What I think is going on
 
@@ -352,7 +358,7 @@ I didn't. This was supposed to be a quick one-evening project.
 
 - **Don't use it zero-shot for these jobs.** My tests don't support it for safety gating, tone or urgency scoring, search over large candidate pools, or re-ranking options that look alike.
 - **Fine-tuning is the open question.** It's where the authors' best results come from, and I didn't test it.
-- **Test on your own task first.** Compare against the dumbest baseline you can think of (a regex, BM25, raw embeddings). In my case, the dumb baselines won every time.
+- **Test on your own task first.** Compare against the dumbest baseline you can think of (a regex, BM25, raw embeddings). In my case, the regex and BM25 beat it on their tasks, and on tone it was no better than raw embeddings on urgency.
 - **Keep an eye on issues #15 and #3.** If a corrected checkpoint comes out, these notebooks should re-run in about an hour.
 
 ## Limitations of this report
@@ -364,7 +370,10 @@ I didn't. This was supposed to be a quick one-evening project.
 - **Zero-shot only.** No fine-tuning.
 - **One layout.** I always put the question after the state (the library's default), and I tried five sets of option wordings, not every possible one.
 - **No comparison against a generative LLM.** Whether one would do better here is untested.
-- **Repeatability:** `clm-raw`'s aggregate numbers changed between VMs. `clm-latest`'s matched, but I didn't compare per-case outputs.
+- **Repeatability:**
+  - Every aggregate result for `clm-latest` reproduced across re-runs on fresh VMs.
+  - The command finder's per-query probabilities drifted slightly between runs (for example 0.119 → 0.136). That was enough to change one hub count (9 → 10), and to swap which wrong answer came first for one query ("rename the current git branch": `pio platform update` in the first run, `tldr mv` in the re-run, at 0.085 vs 0.084). No score changed.
+  - `clm-raw`'s Bouncer results differ between the two notebooks that run the same setup, but each notebook reproduces itself (see Attempt 1). I haven't explained that.
 - **One model version:** `CLM-v0.1-8B`. The authors have announced a CLM-35B for early October.
 
 ## How it went, in order
@@ -408,13 +417,24 @@ A command counts as correct if it matches the regex. Catalog: tldr-pages `106eb6
 
 ## Reproducing this
 
-Everything is in `notebooks/`:
-
 | file | what it runs |
 |---|---|
-| `clm_smoke_test.ipynb` | Setup (Python 3.12 venv, vLLM, `clm-serve`), Bouncer round 1, Tone Radar, latency |
-| `clm_bouncer_rescue.ipynb` | The five Bouncer framings |
-| `clm_cmdfinder_gate.ipynb` + `diag_cells.py` | The command finder, then the hubness / easy-set / re-rank diagnostic (paste the two cells at the end of the notebook, same session) |
-| `catalog.py` | The tldr-pages parser, the 20 queries and the answer regexes |
+| `notebooks/clm_smoke_test.ipynb` | Setup (Python 3.12 venv, vLLM, `clm-serve`), Bouncer round 1, Tone Radar, latency. The copy here is my re-run, with outputs |
+| `notebooks/clm_bouncer_rescue.ipynb` | The five Bouncer framings |
+| `notebooks/clm_cmdfinder_gate.ipynb` | The command finder, then the hubness / easy-set / re-rank diagnostic at the end |
+| `notebooks/catalog.py` | The tldr-pages parser, the 20 queries and the answer regexes |
+| `results/` | Raw JSON from the re-runs: `smoke_results.json` (every Bouncer case with probabilities, every tone pair), `rescue_results.json` (the five framings), `gate_results.json` (per-query top-1 and top-5 for all three methods) and `diag_results.json` (hubs, easy-set and re-rank results per query) |
+
+**Versions.** The notebooks pin what these results used:
+- `contrastive-lm==0.1.0` and `vllm==0.30.0`, which brought in torch 2.13.0.
+- Python 3.12.
+- `rank_bm25==0.2.2`.
+- tldr-pages at commit `106eb6eb09b78bc531c89a5cf0915dd549de6cf7`.
+
+One thing I didn't record: the exact Hugging Face revisions of the CLM head (`clm-download` fetches the latest) and of `Qwen/Qwen3-8B`. If either is updated, results could change.
+
+**Re-runs.** On 30 September I re-ran all three notebooks on fresh VMs. Their outputs and `results/` files come from those re-runs. Everything matched the numbers in this report apart from the small differences noted above.
+
+Before pinning, I also accidentally re-ran the command finder against a newer tldr snapshot (`78e2ee50`, 29,854 commands). The full-catalog and re-rank results were identical. The easy set came out 14/20 for CLM and 4/20 for raw embeddings, because the random distractors change with the catalog. That run isn't saved in the repo.
 
 You'll need a Colab A100 or similar. Setup takes about 5–20 minutes, mostly downloading the model, and each notebook runs in a few minutes after that.

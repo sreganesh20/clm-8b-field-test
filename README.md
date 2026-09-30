@@ -31,9 +31,9 @@ make_chart.py                  regenerates the chart
 notebooks/
   clm_smoke_test.ipynb         setup + Terminal Bouncer round 1 + Tone Radar + latency
   clm_bouncer_rescue.ipynb     five other ways of asking the Bouncer question
-  clm_cmdfinder_gate.ipynb     the command finder
-  diag_cells.py                follow-up diagnostics (paste into the command-finder notebook)
+  clm_cmdfinder_gate.ipynb     the command finder + follow-up diagnostics
   catalog.py                   tldr-pages parser, the 20 test queries and their answer regexes
+results/                       raw JSON results from the Colab runs
 ```
 
 ## Running it
@@ -43,6 +43,8 @@ You need a GPU with roughly 24 GB+ of memory. I used a Colab A100.
 1. Open a notebook in Colab and pick an A100 runtime.
 2. Run all. The first cells build a separate Python 3.12 environment, because vLLM breaks on Colab's default Python 3.13. They then start the Qwen3-8B encoder with vLLM and start `clm-serve`.
 3. Setup takes 5–20 minutes, mostly the model download. Each experiment then runs in a few minutes.
+
+Versions are pinned to what I ran: `contrastive-lm==0.1.0`, `vllm==0.30.0` (torch 2.13.0), Python 3.12, and tldr-pages at commit `106eb6eb`. The Hugging Face model revisions weren't recorded.
 
 ## Credits
 

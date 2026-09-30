@@ -1,0 +1,742 @@
+[
+ {
+  "id":"disk_free",
+  "pair":"",
+  "query":"how much disk space is left on my machine",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"zapier analytics {{[-m|--mode]}} {{enabled|anonymous|disable",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"vagrant up",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"rmpc",
+  "p_top1":0.113,
+  "top5":[
+   [
+    "rmpc",
+    0.113
+   ],
+   [
+    "btm",
+    0.049
+   ],
+   [
+    "tldr qm disk",
+    0.045
+   ],
+   [
+    "tig",
+    0.021
+   ],
+   [
+    "qjoypad",
+    0.02
+   ]
+  ]
+ },
+ {
+  "id":"port_owner",
+  "pair":"",
+  "query":"find out which process is using port 8080",
+  "bm25@1":false,
+  "bm25@5":true,
+  "bm25_top1":"witr --port {{port}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"telinit 1",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"telnet {{host}}",
+  "p_top1":0.024,
+  "top5":[
+   [
+    "telnet {{host}}",
+    0.024
+   ],
+   [
+    "mail",
+    0.023
+   ],
+   [
+    "iperf {{[-u|--udp]}} {{[-c|--client]}} {{server_ad",
+    0.02
+   ],
+   [
+    "smbclient {{[-W|--workgroup]}} {{domain}} {{[-U|--",
+    0.017
+   ],
+   [
+    "rdesktop -u {{username}} -p {{password}} {{host:po",
+    0.015
+   ]
+  ]
+ },
+ {
+  "id":"untar",
+  "pair":"",
+  "query":"unzip a .tar.gz file",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"betty {{unzip}} {{archive.tar.gz}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"dpkg-reconfigure tzdata",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"mkisofs -o {{filename.iso}} {{path\/to\/source_directory}}",
+  "p_top1":0.022,
+  "top5":[
+   [
+    "mkisofs -o {{filename.iso}} {{path\/to\/source_direc",
+    0.022
+   ],
+   [
+    "create-image {{[-o|--output]}} {{path\/to\/output.cp",
+    0.019
+   ],
+   [
+    "bzip2 {{path\/to\/file_to_compress}}",
+    0.014
+   ],
+   [
+    "xz {{path\/to\/file}}",
+    0.014
+   ],
+   [
+    "xz -9 {{path\/to\/file}}",
+    0.013
+   ]
+  ]
+ },
+ {
+  "id":"count_lines",
+  "pair":"",
+  "query":"count the number of lines in a file",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"wc {{[-l|--lines]}} {{path\/to\/file}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"niri msg outputs",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"tldr mv",
+  "p_top1":0.136,
+  "top5":[
+   [
+    "tldr mv",
+    0.136
+   ],
+   [
+    "ls",
+    0.022
+   ],
+   [
+    "echo \"{{string}}\" | boxes",
+    0.018
+   ],
+   [
+    "paste {{[-d|--delimiters]}} '\\n' {{path\/to\/file1}}",
+    0.012
+   ],
+   [
+    "tldr lp",
+    0.011
+   ]
+  ]
+ },
+ {
+  "id":"grep_rec",
+  "pair":"",
+  "query":"search for a word in every file under this folder",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"s {{word}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"module list",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"nnn",
+  "p_top1":0.03,
+  "top5":[
+   [
+    "nnn",
+    0.03
+   ],
+   [
+    "tree -d",
+    0.019
+   ],
+   [
+    "pdfdetach list -enc {{UTF-8}} {{path\/to\/input.pdf}",
+    0.013
+   ],
+   [
+    "find {{path\/to\/directory}} -type d -iname '{{*lib*",
+    0.013
+   ],
+   [
+    "pdfimages -list {{path\/to\/file.pdf}}",
+    0.011
+   ]
+  ]
+ },
+ {
+  "id":"chmod_x",
+  "pair":"",
+  "query":"make my script runnable",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"mix run {{my_script.exs}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"flameshot launcher",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"vagrant init",
+  "p_top1":0.184,
+  "top5":[
+   [
+    "vagrant init",
+    0.184
+   ],
+   [
+    "pulumi new",
+    0.035
+   ],
+   [
+    "just init {{project_name}}",
+    0.029
+   ],
+   [
+    "vagrant init",
+    0.018
+   ],
+   [
+    "pop",
+    0.017
+   ]
+  ]
+ },
+ {
+  "id":"branch_mv",
+  "pair":"",
+  "query":"rename the current git branch",
+  "bm25@1":false,
+  "bm25@5":true,
+  "bm25_top1":"git rename-branch {{old_branch_name}} {{new_branch_name}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"hub branch",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"tldr mv",
+  "p_top1":0.085,
+  "top5":[
+   [
+    "tldr mv",
+    0.085
+   ],
+   [
+    "pio platform update",
+    0.084
+   ],
+   [
+    "tldr jira open",
+    0.033
+   ],
+   [
+    "sfdk scrape --keep",
+    0.025
+   ],
+   [
+    "pulumi stack init",
+    0.023
+   ]
+  ]
+ },
+ {
+  "id":"blame",
+  "pair":"",
+  "query":"see who last edited each line of a file",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"who",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"git summary",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"ls",
+  "p_top1":0.089,
+  "top5":[
+   [
+    "ls",
+    0.089
+   ],
+   [
+    "tldr mv",
+    0.055
+   ],
+   [
+    "paclog --commandline",
+    0.046
+   ],
+   [
+    "nnn",
+    0.015
+   ],
+   [
+    "rcsdiff -r{{revision1}} -r{{revision2}} {{path\/to\/",
+    0.013
+   ]
+  ]
+ },
+ {
+  "id":"download",
+  "pair":"",
+  "query":"download a file from a URL",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"gdown {{url}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"module list",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"psexec.py -hashes {{LM_Hash}}:{{NT_Hash}} {{domain}}\/{{usern",
+  "p_top1":0.021,
+  "top5":[
+   [
+    "psexec.py -hashes {{LM_Hash}}:{{NT_Hash}} {{domain",
+    0.021
+   ],
+   [
+    "smbclient.py -hashes {{LM_HASH}}:{{NT_HASH}} {{dom",
+    0.02
+   ],
+   [
+    "tldr nc",
+    0.017
+   ],
+   [
+    "prowler m365 --sp-env-auth",
+    0.016
+   ],
+   [
+    "ls",
+    0.011
+   ]
+  ]
+ },
+ {
+  "id":"folder_size",
+  "pair":"",
+  "query":"how big is this folder",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"tldr {{command}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"niri msg outputs",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"pdftocairo {{path\/to\/file.pdf}} -jpeg",
+  "p_top1":0.068,
+  "top5":[
+   [
+    "pdftocairo {{path\/to\/file.pdf}} -jpeg",
+    0.068
+   ],
+   [
+    "nnn",
+    0.022
+   ],
+   [
+    "aconnect",
+    0.017
+   ],
+   [
+    "systemsettings",
+    0.016
+   ],
+   [
+    "qmake",
+    0.016
+   ]
+  ]
+ },
+ {
+  "id":"docker_ps",
+  "pair":"",
+  "query":"list the docker containers that are running",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"docker {{[ps|container ls]}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"docker compose stop --dry-run",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"pio platform update",
+  "p_top1":0.027,
+  "top5":[
+   [
+    "pio platform update",
+    0.027
+   ],
+   [
+    "az vm start {{[-g|--resource-group]}} {{rg}} {{[-n",
+    0.023
+   ],
+   [
+    "mail",
+    0.013
+   ],
+   [
+    "apx stacks new",
+    0.008
+   ],
+   [
+    "aws ssm start-session --target \"{{instance_id}}\"",
+    0.007
+   ]
+  ]
+ },
+ {
+  "id":"venv",
+  "pair":"",
+  "query":"create a python virtual environment",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"python -m venv {{path\/to\/virtual_environment}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"flameshot launcher",
+  "clm-latest@1":false,
+  "clm-latest@5":true,
+  "clm-latest_top1":"vagrant init",
+  "p_top1":0.435,
+  "top5":[
+   [
+    "vagrant init",
+    0.435
+   ],
+   [
+    "python -m venv {{path\/to\/virtual_environment}}",
+    0.052
+   ],
+   [
+    "pyenv virtualenv 3.6.6 {{virtualenv_name}}",
+    0.026
+   ],
+   [
+    "vagrant init",
+    0.023
+   ],
+   [
+    "pulumi new",
+    0.015
+   ]
+  ]
+ },
+ {
+  "id":"undo_keep",
+  "pair":"P1",
+  "query":"undo my last commit but keep my changes",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"git reset HEAD~",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"git psykorebase --continue",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"pulumi new",
+  "p_top1":0.093,
+  "top5":[
+   [
+    "pulumi new",
+    0.093
+   ],
+   [
+    "p4 add",
+    0.07
+   ],
+   [
+    "sfdk scrape --keep",
+    0.051
+   ],
+   [
+    "gitmoji --remove",
+    0.033
+   ],
+   [
+    "jj git export --ignore-working-copy",
+    0.03
+   ]
+  ]
+ },
+ {
+  "id":"undo_trash",
+  "pair":"P1",
+  "query":"undo my last commit and throw the changes away completely",
+  "bm25@1":false,
+  "bm25@5":false,
+  "bm25_top1":"git reset HEAD~",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"git psykorebase --continue",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"git reset --soft HEAD~2",
+  "p_top1":0.273,
+  "top5":[
+   [
+    "git reset --soft HEAD~2",
+    0.273
+   ],
+   [
+    "git restore {{path\/to\/file}}",
+    0.074
+   ],
+   [
+    "git mv {{path\/to\/file}} {{path\/to\/destination}}",
+    0.025
+   ],
+   [
+    "git reset HEAD~",
+    0.024
+   ],
+   [
+    "git checkout {{path\/to\/file}}",
+    0.02
+   ]
+  ]
+ },
+ {
+  "id":"stage_all",
+  "pair":"P2",
+  "query":"stage all my changes in git",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"git add {{[-A|--all]}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"jj git colocation enable",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"fj issue create",
+  "p_top1":0.036,
+  "top5":[
+   [
+    "fj issue create",
+    0.036
+   ],
+   [
+    "pulumi stack init",
+    0.033
+   ],
+   [
+    "git mergetool",
+    0.029
+   ],
+   [
+    "fj pr create",
+    0.025
+   ],
+   [
+    "vagrant init",
+    0.022
+   ]
+  ]
+ },
+ {
+  "id":"unstage_all",
+  "pair":"P2",
+  "query":"unstage everything I added in git",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"git reset",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"jj git colocation disable",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"git gui",
+  "p_top1":0.066,
+  "top5":[
+   [
+    "git gui",
+    0.066
+   ],
+   [
+    "yakuake",
+    0.039
+   ],
+   [
+    "fj issue create",
+    0.038
+   ],
+   [
+    "tldr mv",
+    0.035
+   ],
+   [
+    "ionic start",
+    0.035
+   ]
+  ]
+ },
+ {
+  "id":"br_del_loc",
+  "pair":"P3",
+  "query":"delete a git branch on my machine",
+  "bm25@1":false,
+  "bm25@5":true,
+  "bm25_top1":"git delete-branch {{branch_name1 branch_name2 ...}}",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"flameshot launcher",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"tldr mv",
+  "p_top1":0.101,
+  "top5":[
+   [
+    "tldr mv",
+    0.101
+   ],
+   [
+    "youtube-viewer --login",
+    0.032
+   ],
+   [
+    "systemsettings",
+    0.022
+   ],
+   [
+    "cf marketplace",
+    0.017
+   ],
+   [
+    "pulumi new",
+    0.017
+   ]
+  ]
+ },
+ {
+  "id":"br_del_rem",
+  "pair":"P3",
+  "query":"delete a git branch on the remote",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"git push {{remote_name}} {{[-d|--delete]}} {{remote_branch_n",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"prek auto-update",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"youtube-viewer --login",
+  "p_top1":0.081,
+  "top5":[
+   [
+    "youtube-viewer --login",
+    0.081
+   ],
+   [
+    "git maintenance unregister",
+    0.036
+   ],
+   [
+    "git maintenance register",
+    0.036
+   ],
+   [
+    "hub init",
+    0.032
+   ],
+   [
+    "pulumi new",
+    0.029
+   ]
+  ]
+ },
+ {
+  "id":"scp_up",
+  "pair":"P4",
+  "query":"copy a file from my laptop to a remote server",
+  "bm25@1":false,
+  "bm25@5":true,
+  "bm25_top1":"scp {{remote_host}}:{{path\/to\/remote_file}} {{path\/to\/local_",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"flameshot launcher",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"vagrant init",
+  "p_top1":0.118,
+  "top5":[
+   [
+    "vagrant init",
+    0.118
+   ],
+   [
+    "ls",
+    0.096
+   ],
+   [
+    "tldr mv",
+    0.019
+   ],
+   [
+    "sudo nwipe",
+    0.015
+   ],
+   [
+    "aurvote --configure",
+    0.012
+   ]
+  ]
+ },
+ {
+  "id":"scp_down",
+  "pair":"P4",
+  "query":"copy a file from a remote server to my laptop",
+  "bm25@1":true,
+  "bm25@5":true,
+  "bm25_top1":"scp {{remote_host}}:{{path\/to\/remote_file}} {{path\/to\/local_",
+  "clm-raw@1":false,
+  "clm-raw@5":false,
+  "clm-raw_top1":"flameshot launcher",
+  "clm-latest@1":false,
+  "clm-latest@5":false,
+  "clm-latest_top1":"ls",
+  "p_top1":0.099,
+  "top5":[
+   [
+    "ls",
+    0.099
+   ],
+   [
+    "mail",
+    0.035
+   ],
+   [
+    "keepass2",
+    0.028
+   ],
+   [
+    "rmpc",
+    0.025
+   ],
+   [
+    "tldr mv",
+    0.022
+   ]
+  ]
+ }
+]
