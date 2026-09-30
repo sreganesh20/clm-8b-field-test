@@ -6,7 +6,7 @@
 
 ## The short version
 
-I wanted a small weekend project with Contrastive-LM's new CLM-8B, a "System One" model that doesn't generate text. It scores a set of options you give it and returns probabilities. That felt like the right tool for small decisions inside agents, like "should I run this command?" or "which tool fits this request?".
+I gave Contrastive-LM's new CLM-8B one evening (about six hours, in the end)…, a "System One" model that doesn't generate text. It scores a set of options you give it and returns probabilities. That felt like the right tool for small decisions inside agents, like "should I run this command?" or "which tool fits this request?".
 
 I tried three ideas. I dropped all three:
 
@@ -346,7 +346,7 @@ My evidence for the "good at topics" half is thin, just a handful of examples.
 - **Measure how similar CLM's state vectors are**, for the Bouncer states (question appended) and for the command queries (no question). High similarity would confirm a symptom worth chasing, though it wouldn't prove the cause on its own.
 - **Re-run Bouncer with the question first.** That's a more direct test of the layout theory.
 
-I didn't. This was supposed to be a weekend project.
+I didn't. This was supposed to be a quick one-evening project.
 
 ## What I'd tell someone considering CLM
 
