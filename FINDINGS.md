@@ -317,7 +317,7 @@ The server's own timer covers encoding any uncached text, projecting, scoring an
 | same state again, 3 options, 20 calls | state and options | **0.5 ms** median |
 | one full round trip from the notebook: new state, 3 options | the options | 38.6 ms (a single call, not a median) |
 | new state vs all 29,852 commands (A100 40 GB), 10 calls | the commands | 137.6 ms median (260 ms round trip; the whole list is sent and returned every call) |
-| small candidate sets: 80 `rank` calls across both models (`clm-raw` and `clm-latest`) and both set types (50–76 candidates) | everything: all texts had been embedded earlier in the session | **1.1 ms** median (0.8 ms in the re-run) |
+| small candidate sets: 80 `rank` calls across both models (`clm-raw` and `clm-latest`) and both set types (50–76 candidates) | everything: all texts had been embedded earlier in the session | **1.1 ms** median (0.8–1.1 ms across re-runs) |
 | encoding the 29,852-command catalog the first time | nothing | 122 s, once |
 | browser → Colab proxy → server | – | 80 ms server, 305 ms round trip |
 
@@ -433,7 +433,7 @@ A command counts as correct if it matches the regex. Catalog: tldr-pages `106eb6
 
 One thing I didn't record: the exact Hugging Face revisions of the CLM head (`clm-download` fetches the latest) and of `Qwen/Qwen3-8B`. If either is updated, results could change.
 
-**Re-runs.** On 30 September I re-ran all three notebooks on fresh VMs. Their outputs and `results/` files come from those re-runs. Everything matched the numbers in this report apart from the small differences noted above.
+**Re-runs.** On 30 September I re-ran all three notebooks on fresh VMs. Their outputs and `results/` files come from those re-runs. Everything matched the numbers in this report apart from the small differences noted above. The command-finder notebook's saved outputs are from a second pass in an already-warm session, so its warm-up cell shows 0.3 s instead of the roughly two-minute cold encode.
 
 Before pinning, I also accidentally re-ran the command finder against a newer tldr snapshot (`78e2ee50`, 29,854 commands). The full-catalog and re-rank results were identical. The easy set came out 14/20 for CLM and 4/20 for raw embeddings, because the random distractors change with the catalog. That run isn't saved in the repo.
 
